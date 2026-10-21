@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">iCheque</string>
+    <string name="title_activity_main">iCheque</string>
+    <string name="package_name">app.icheque</string>
+    <string name="custom_url_scheme">app.icheque</string>
+</resources>

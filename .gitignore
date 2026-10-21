@@ -35,6 +35,9 @@ pnpm-debug.log*
 # local database
 /data
 
+# apk gerado localmente
+/dist
+
 # vercel
 .vercel
 
