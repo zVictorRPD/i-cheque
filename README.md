@@ -1,21 +1,25 @@
-# Next.js template
+# iCheque
 
-This is a Next.js template with shadcn/ui.
+Gestão de empréstimos por desconto de cheque. As regras de negócio estão em `PLANO.md`.
 
-## Adding components
-
-To add components to your app, run the following command:
+## Rodar localmente
 
 ```bash
-npx shadcn@latest add button
+npm install
+npm run db:push
+npm run dev
 ```
 
-This will place the ui components in the `components` directory.
+Abra http://localhost:3000. Copie `.env.example` para `.env` antes do `npm run db:push`. Sem `TURSO_DATABASE_URL`, os dados ficam em `data/local.db`.
 
-## Using components
+Sem `RESEND_API_KEY`, o link de recuperação de senha aparece no terminal do servidor.
 
-To use the components in your app, import them as follows:
+## Variáveis
 
-```tsx
-import { Button } from "@/components/ui/button";
+Veja `.env.example`. Na Vercel, defina `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`, `TURSO_DATABASE_URL` e `TURSO_AUTH_TOKEN`. O banco Turso deve ficar em São Paulo.
+
+## Testes
+
+```bash
+npm test
 ```

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" fill="none" role="img" aria-label="iCheque">
+  <title>iCheque</title>
+  <rect width="64" height="64" rx="16" fill="#0F766E"/>
+  <rect x="16" y="15" width="32" height="26" rx="3.5" fill="#F0FDFA"/>
+  <path d="M36 15h9.2c1 0 1.8.8 1.8 1.8V26L36 15Z" fill="#99F6E4"/>
+  <path d="M21 23h10M21 29h16M21 35h11" stroke="#0F766E" stroke-width="1.75" stroke-linecap="round"/>
+  <circle cx="44" cy="44" r="10" fill="#134E4A"/>
+  <path d="M39.2 44.2 42.4 47.4 49 40.2" stroke="#F0FDFA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="80" y="42" font-family="ui-sans-serif, system-ui, Segoe UI, sans-serif" font-size="32" font-weight="600" letter-spacing="-0.04em">
+    <tspan fill="#0F766E">i</tspan><tspan fill="#171717">Cheque</tspan>
+  </text>
+</svg>
