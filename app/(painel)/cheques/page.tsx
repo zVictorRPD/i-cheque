@@ -1,10 +1,19 @@
-import { ChequeCard } from "@/components/cheque-card"
+import { ListaCheques } from "@/components/lista-cheques"
 import { NovoCheque } from "@/components/novo-cheque"
 import { listarCheques } from "@/lib/cheques"
 import { exigirUsuario } from "@/lib/sessao"
+import { lerOrdemData, lerStatusFiltro } from "@/lib/status"
 
-export default async function ChequesPage() {
+export default async function ChequesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    status?: string | string[]
+    ordem?: string | string[]
+  }>
+}) {
   const usuario = await exigirUsuario()
+  const params = await searchParams
   const cheques = await listarCheques(usuario.id)
 
   return (
@@ -15,7 +24,7 @@ export default async function ChequesPage() {
           <p className="text-sm text-muted-foreground">
             {cheques.length === 0
               ? "Nenhum cheque cadastrado."
-              : `${cheques.length} ${cheques.length === 1 ? "cheque" : "cheques"}, do vencimento mais próximo ao mais distante.`}
+              : `${cheques.length} ${cheques.length === 1 ? "cheque" : "cheques"}`}
           </p>
         </div>
         <NovoCheque />
@@ -25,11 +34,11 @@ export default async function ChequesPage() {
           Cadastre o primeiro cheque para ver o valor pago e o lucro.
         </p>
       ) : (
-        <div className="flex flex-col gap-3">
-          {cheques.map((cheque) => (
-            <ChequeCard key={cheque.id} cheque={cheque} />
-          ))}
-        </div>
+        <ListaCheques
+          cheques={cheques}
+          statusAtivos={lerStatusFiltro(params.status)}
+          ordem={lerOrdemData(params.ordem)}
+        />
       )}
     </>
   )

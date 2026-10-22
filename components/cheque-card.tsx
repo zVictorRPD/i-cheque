@@ -22,7 +22,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import type { ChequeItem } from "@/lib/cheques"
-import { emAberto } from "@/lib/status"
+import { classeStatus, emAberto, rotuloStatus } from "@/lib/status"
 import {
   formatarData,
   formatarDataHora,
@@ -31,20 +31,6 @@ import {
   hojeIso,
 } from "@/lib/formatacao"
 import { cn } from "@/lib/utils"
-
-const statusTexto = {
-  pendente: "Pendente",
-  adiado: "Adiado",
-  recebido: "Recebido",
-  devolvido: "Devolvido",
-} as const
-
-const statusClasse = {
-  pendente: "bg-muted text-foreground",
-  adiado: "bg-amber-500 text-amber-950",
-  recebido: "bg-emerald-600 text-white dark:bg-emerald-500",
-  devolvido: "bg-red-600 text-white",
-} as const
 
 function Linha({ rotulo, valor }: { rotulo: string; valor: string }) {
   return (
@@ -104,10 +90,10 @@ export function ChequeCard({ cheque }: { cheque: ChequeItem }) {
         <span
           className={cn(
             "inline-flex h-6 shrink-0 items-center rounded-full px-2 text-xs font-medium",
-            statusClasse[cheque.status]
+            classeStatus[cheque.status]
           )}
         >
-          {statusTexto[cheque.status]}
+          {rotuloStatus[cheque.status]}
         </span>
         <ChevronDownIcon
           className={cn(

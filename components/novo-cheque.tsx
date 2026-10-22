@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { PlusIcon } from "lucide-react"
 import { toast } from "sonner"
 import { criarCheque } from "@/app/acoes/cheques"
 import { Button } from "@/components/ui/button"
@@ -18,9 +19,22 @@ import { Label } from "@/components/ui/label"
 import { mascaraReais } from "@/lib/formatacao"
 
 export function NovoCheque() {
+  const gatilho = useRef<HTMLDivElement>(null)
   const [aberto, setAberto] = useState(false)
   const [enviando, setEnviando] = useState(false)
   const [valor, setValor] = useState("")
+  const [gatilhoFora, setGatilhoFora] = useState(false)
+
+  useEffect(() => {
+    const elemento = gatilho.current
+    if (!elemento) return
+    const observador = new IntersectionObserver(
+      ([entrada]) => setGatilhoFora(!entrada.isIntersecting),
+      { rootMargin: "-64px 0px 0px 0px" }
+    )
+    observador.observe(elemento)
+    return () => observador.disconnect()
+  }, [])
 
   return (
     <Dialog
@@ -30,9 +44,26 @@ export function NovoCheque() {
         if (!proximo) setValor("")
       }}
     >
-      <DialogTrigger render={<Button className="h-11" />}>
-        Novo cheque
-      </DialogTrigger>
+      <div ref={gatilho}>
+        <DialogTrigger render={<Button className="h-11" />}>
+          Novo cheque
+        </DialogTrigger>
+      </div>
+      {gatilhoFora && !aberto ? (
+        <div className="pointer-events-none fixed inset-x-0 bottom-24 z-40">
+          <div className="mx-auto flex w-full max-w-2xl justify-end px-4">
+            <Button
+              type="button"
+              size="icon-lg"
+              aria-label="Novo cheque"
+              className="pointer-events-auto size-14 rounded-full shadow-lg"
+              onClick={() => setAberto(true)}
+            >
+              <PlusIcon />
+            </Button>
+          </div>
+        </div>
+      ) : null}
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Novo cheque</DialogTitle>
