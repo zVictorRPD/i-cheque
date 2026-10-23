@@ -44,6 +44,7 @@ export function FormularioEntrar() {
         const { error } = await authClient.signIn.email({
           email: String(dados.get("email")),
           password: String(dados.get("senha")),
+          rememberMe: true,
         })
         setEnviando(false)
         if (error) {
@@ -120,6 +121,7 @@ export function FormularioCadastro() {
           name: String(dados.get("nome")),
           email: String(dados.get("email")),
           password: senha,
+          rememberMe: true,
         })
         setEnviando(false)
         if (error) {

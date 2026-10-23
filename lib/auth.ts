@@ -17,6 +17,9 @@ export const auth = betterAuth({
       verification: schema.verification,
     },
   }),
+  session: {
+    expiresIn: 60 * 60 * 24 * 30,
+  },
   emailAndPassword: {
     enabled: true,
     sendResetPassword: async ({ user, url }) => {
