@@ -121,7 +121,6 @@ export function FormularioCadastro() {
           name: String(dados.get("nome")),
           email: String(dados.get("email")),
           password: senha,
-          rememberMe: true,
         })
         setEnviando(false)
         if (error) {
